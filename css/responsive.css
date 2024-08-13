@@ -1,0 +1,156 @@
+@media only screen and (max-width: 1280px) {
+  .wrapper {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .formDiv {
+    width: 80%;
+  }
+
+  .hourlyForecastGrid {
+    width: 100%;
+  }
+
+  .current_conditions {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .location {
+    margin-left: 1rem;
+  }
+
+  .forecastSection {
+    padding: 0 !important;
+  }
+
+  .box {
+    padding: 16rem 4rem;
+  }
+
+  .boxevent {
+    padding: 4rem 4rem;
+    padding-top: calc(3rem + 8vw);
+  }
+}
+
+@media only screen and (max-width: 811px) {
+  .box {
+    padding: 16rem 1rem 1rem 1rem;
+  }
+
+  .boxevent {
+    padding: 1rem;
+    padding-top: calc(3rem + 4vw);
+  }
+
+  .container-sm {
+    padding: 0.5rem !important;
+    margin-top: 3rem;
+  }
+
+  .hourlyForecastGrid {
+    grid-template-columns: 1fr 100px 100px;
+  }
+
+  .lineone {
+    width: 40%;
+    height: 4px;
+    right: 9.25px;
+  }
+
+  .linetwo {
+    width: 40%;
+    height: 4px;
+    left: 9.25px;
+  }
+
+  .align {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .formDiv {
+    width: 100%;
+  }
+
+  .box {
+    padding: 12rem 1rem 1rem 1rem;
+  }
+
+  .boxevent {
+    padding: 1rem;
+    padding-top: calc(3rem + 4vw);
+  }
+
+  .currentWeatherLayer {
+    margin-top: 3rem !important;
+  }
+
+  .location {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .gridBox {
+    grid-template-columns: 1fr;
+  }
+
+  .current_conditions {
+    grid-template-columns: 1fr;
+    place-items: center;
+  }
+
+  .container-sm {
+    padding: 0 !important;
+    margin-top: 3rem;
+  }
+
+  .dailyForecast {
+    gap: 1rem;
+    grid-template-columns: 150px 3fr;
+  }
+
+  .forecastData>div:nth-child(1) {
+    margin-right: 4px !important;
+  }
+
+  .dayForecastGrid {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .hourlyForecastGrid {
+    grid-template-columns: 2fr 90px;
+  }
+
+  .hourlyForecast {
+    grid-template-columns: 80px 3fr;
+    gap: 0.5rem;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .break {
+    margin: 1rem 0rem;
+  }
+
+  .break>span {
+    display: inline !important;
+    margin-left: 0.5rem;
+  }
+
+  .marg {
+    margin-right: 1rem;
+  }
+
+  .hide {
+    display: none;
+  }
+}

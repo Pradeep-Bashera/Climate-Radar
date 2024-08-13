@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Radar</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="shortcut icon" href="images/favicon.svg">
+</head>
+
+<body>
+    <div class="frame">
+        <nav class="navbar container d-flex align-items-center pt-3">
+            <div class="unit ms-auto">
+                <h2 class="unit_head p-2 mb-0">°F</h2>
+            </div>
+            <div class="divider_nav mx-4"></div>
+            <div class="theme d-flex justify-content-center align-items-center">
+                <div class="theme_icon p-2"><i class="fas fa-moon"></i></div>
+            </div>
+        </nav>
+        <div class="box">
+            <h1 class="text-center display-4 main">Climate Radar</h1>
+            <div class="wrapper">
+                <form class="form-group">
+                    <div class="input-group formDiv m-auto">
+                        <input type="text" name="location" id="location" class="form-control" placeholder="Enter city"
+                            autocomplete="off">
+                        <button class="btn btn-primary getWeather text-dark px-3" type="button" id="button-addon2"><i
+                                class="fas fa-search"></i></button>
+                    </div>
+                </form>
+
+                <div class="errorContainer mt-5">
+                    <h2 class="fs-3 text-center">
+                        Something went wrong, try checking the city name.
+                    </h2>
+                </div>
+
+                <div class="Loader mt-5">
+                    <h2 class="fs-3 text-center">
+                        Loading...
+                    </h2>
+                </div>
+
+
+                <div class="eventLayer">
+                    <div class="currentWeatherLayer mt-5">
+                        <div class="infoBox">
+                            <div class="gridBox mt-4">
+                                <div class="current d-flex flex-column align-items-center">
+                                    <h2 class="fw-bolder fs-5 location mb-4"></h2>
+                                    <div class="d-flex flex-column justify-content-between align-items-center">
+                                        <div class="weatherIcon"></div>
+                                        <h2 class="temp display-5 mb-0"></h2>
+                                    </div>
+                                    <h1 class="weather mt-2 main text-center"></h1>
+                                </div>
+
+                                <div class="current_conditions">
+                                    <div class="weatherFeels">
+                                        <h2 class="feels fs-4"></h2>
+                                    </div>
+                                    <div class="weatherPressure">
+                                        <h2 class="pressure fs-4"></h2>
+                                    </div>
+                                    <div class="weatherHumidity">
+                                        <h2 class="humidity fs-4"></h2>
+                                    </div>
+                                    <div class="weatherAQI">
+                                        <h2 class="AQI fs-4"></h2>
+                                    </div>
+                                    <div class="weatherSunrise">
+                                        <h2 class="sunrise fs-4"></h2>
+                                    </div>
+                                    <div class="weatherSunset">
+                                        <h2 class="sunset fs-4"></h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="forecastSection">
+                        <h1 class="display-3 text-center main">Forecast</h1>
+
+
+                        <div class="WeatherForecast">
+
+                            <!-- expand -->
+                            <div class="borderBottom">
+                                <div class="today m-auto mt-4 p-2">
+                                    <h2 class="fs-3">Today</h2>
+                                    <div class="arrow">
+                                        <div class="lineone"></div>
+                                        <div class="linetwo"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Forecase Data today -->
+                                <div class="todayExpandable">
+                                    <h3 class="m-2 p-3 fs-2 fw-bolder align">Day</h3>
+                                    <div class="dailyForecast">
+                                        <div class="forecastTitles d-flex flex-column align-items-center">
+                                            <span class="p-3 m-3 fs-5">Condition</span>
+                                            <span class="p-3 m-3 fs-5">Temperature</span>
+                                            <span class="p-3 m-3 fs-5">Humidity</span>
+                                            <span class="p-3 m-3 fs-5">Visibility</span>
+                                            <span class="p-3 m-3 fs-5">Wind</span>
+                                        </div>
+
+                                        <div
+                                            class="forecastData d-flex flex-column align-items-center justify-content-evenly">
+                                            <div class="p-2 m-1 me-3 d-flex justify-content-between align-items-center">
+                                                <div class="today_DayForecastIcon weatherIcon_table marg"></div>
+                                                <span class="today_DayForecastCondition fs-5"></span>
+                                            </div>
+                                            <div
+                                                class="today_DayForecastTemperature p-2 m-2 dayForecastGrid text-center">
+                                                <span class="today_DayForecastTemperature_min hide fs-5"></span>
+                                                <span class="today_DayForecastTemperature_max hide fs-5"></span>
+                                                <span class="today_DayForecastTemperature_avg break fs-5"></span>
+                                            </div>
+                                            <span class="today_DayForecastHumidity p-3 m-3 fs-5"></span>
+
+                                            <span class="today_DayForecastVisibility p-3 m-3 fs-5"></span>
+                                            <span class="today_DayForecastWind p-3 m-3 fs-5"></span>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="m-2 p-3 mt-5 pt-5 fs-2 fw-bolder align">Hourly
+                                    </h3>
+                                    <div class="hourlyForecast">
+                                        <div class="forecastTitles d-flex flex-column align-items-center">
+                                            <span class="p-3 m-3 fs-5">00:00</span>
+                                            <span class="p-3 m-3 fs-5">01:00</span>
+                                            <span class="p-3 m-3 fs-5">02:00</span>
+                                            <span class="p-3 m-3 fs-5">03:00</span>
+                                            <span class="p-3 m-3 fs-5">04:00</span>
+                                            <span class="p-3 m-3 fs-5">05:00</span>
+                                            <span class="p-3 m-3 fs-5">06:00</span>
+                                            <span class="p-3 m-3 fs-5">07:00</span>
+                                            <span class="p-3 m-3 fs-5">08:00</span>
+                                            <span class="p-3 m-3 fs-5">09:00</span>
+                                            <span class="p-3 m-3 fs-5">10:00</span>
+                                            <span class="p-3 m-3 fs-5">11:00</span>
+                                            <span class="p-3 m-3 fs-5">12:00</span>
+                                            <span class="p-3 m-3 fs-5">13:00</span>
+                                            <span class="p-3 m-3 fs-5">14:00</span>
+                                            <span class="p-3 m-3 fs-5">15:00</span>
+                                            <span class="p-3 m-3 fs-5">16:00</span>
+                                            <span class="p-3 m-3 fs-5">17:00</span>
+                                            <span class="p-3 m-3 fs-5">18:00</span>
+                                            <span class="p-3 m-3 fs-5">19:00</span>
+                                            <span class="p-3 m-3 fs-5">20:00</span>
+                                            <span class="p-3 m-3 fs-5">21:00</span>
+                                            <span class="p-3 m-3 fs-5">22:00</span>
+                                            <span class="p-3 m-3 fs-5">23:00</span>
+                                        </div>
+
+                                        <div
+                                            class="forecastData d-flex flex-column align-items-center justify-content-between">
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_0 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_0 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_0 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_1 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_1 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_1 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_2 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_2 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_2 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_3 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_3 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_3 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_4 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_4 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_4 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_5 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_5 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_5 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_6 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_6 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_6 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_7 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_7 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_7 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_8 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_8 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_8 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_9 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_9 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_9 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_10 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_10 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_10 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_11 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_11 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_11 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_12 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_12 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_12 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_13 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_13 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_13 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_14 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_14 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_14 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_15 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_15 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_15 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_16 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_16 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_16 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_17 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_17 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_17 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_18 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_18 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_18 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_19 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_19 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_19 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_20 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_20 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_20 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_21 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_21 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_21 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_22 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_22 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_22 fs-5 pt-3"></span>
+                                            </div>
+
+                                            <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="hourly_todayWeatherIcon_23 weatherIcon_table"></div>
+                                                    <span class="hourly_todayForecastCondition_23 fs-5 w-75"></span>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <span class="hourly_todayForecastTemperature_23 fs-5 pt-3"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="borderBottom">
+                            <div class="tomorrow m-auto p-2 mt-4">
+                                <h2 class="fs-3">Tomorrow</h2>
+                                <div class="arrowSecond">
+                                    <div class="lineone"></div>
+                                    <div class="linetwo"></div>
+                                </div>
+                            </div>
+
+
+                            <!-- Forecast Data Tomorrow -->
+                            <div class="tomorrowExpandable">
+                                <h3 class="m-2 p-3 fs-2 fw-bolder align">Day</h3>
+                                <div class="dailyForecast">
+                                    <div class="forecastTitles d-flex flex-column align-items-center">
+                                        <span class="p-3 m-3 fs-5">Condition</span>
+                                        <span class="p-3 m-3 fs-5">Temperature</span>
+                                        <span class="p-3 m-3 fs-5">Humidity</span>
+                                        <span class="p-3 m-3 fs-5">Visibility</span>
+                                        <span class="p-3 m-3 fs-5">Wind</span>
+                                        <span class="p-3 m-3 fs-5">Sunrise</span>
+                                        <span class="p-3 m-3 fs-5">Sunset</span>
+                                    </div>
+
+                                    <div
+                                        class="forecastData d-flex flex-column align-items-center justify-content-evenly">
+                                        <div class="p-2 m-1 me-3 d-flex justify-content-between align-items-center">
+                                            <div class="tomorrow_DayForecastIcon weatherIcon_table marg"></div>
+                                            <span class="tomorrow_DayForecastCondition fs-5"></span>
+                                        </div>
+                                        <div
+                                            class="tomorrow_DayForecastTemperature p-2 m-2 dayForecastGrid text-center">
+                                            <span class="tomorrow_DayForecastTemperature_min hide fs-5"></span>
+                                            <span class="tomorrow_DayForecastTemperature_max hide fs-5"></span>
+                                            <span class="tomorrow_DayForecastTemperature_avg break fs-5"></span>
+                                        </div>
+                                        <span class="tomorrow_DayForecastHumidity p-3 m-3 fs-5"></span>
+
+                                        <span class="tomorrow_DayForecastVisibility p-3 m-3 fs-5"></span>
+                                        <span class="tomorrow_DayForecastWind p-3 m-3 fs-5"></span>
+                                        <span class="tomorrow_DayForecastSunrise p-3 m-3 fs-5"></span>
+                                        <span class="tomorrow_DayForecastSunset p-3 m-3 fs-5"></span>
+                                    </div>
+                                </div>
+
+                                <h3 class="m-2 p-3 mt-5 pt-5 fs-2 fw-bolder align">Hourly</h3>
+                                <div class="hourlyForecast">
+                                    <div class="forecastTitles d-flex flex-column align-items-center">
+                                        <span class="p-3 m-3 fs-5">00:00</span>
+                                        <span class="p-3 m-3 fs-5">01:00</span>
+                                        <span class="p-3 m-3 fs-5">02:00</span>
+                                        <span class="p-3 m-3 fs-5">03:00</span>
+                                        <span class="p-3 m-3 fs-5">04:00</span>
+                                        <span class="p-3 m-3 fs-5">05:00</span>
+                                        <span class="p-3 m-3 fs-5">06:00</span>
+                                        <span class="p-3 m-3 fs-5">07:00</span>
+                                        <span class="p-3 m-3 fs-5">08:00</span>
+                                        <span class="p-3 m-3 fs-5">09:00</span>
+                                        <span class="p-3 m-3 fs-5">10:00</span>
+                                        <span class="p-3 m-3 fs-5">11:00</span>
+                                        <span class="p-3 m-3 fs-5">12:00</span>
+                                        <span class="p-3 m-3 fs-5">13:00</span>
+                                        <span class="p-3 m-3 fs-5">14:00</span>
+                                        <span class="p-3 m-3 fs-5">15:00</span>
+                                        <span class="p-3 m-3 fs-5">16:00</span>
+                                        <span class="p-3 m-3 fs-5">17:00</span>
+                                        <span class="p-3 m-3 fs-5">18:00</span>
+                                        <span class="p-3 m-3 fs-5">19:00</span>
+                                        <span class="p-3 m-3 fs-5">20:00</span>
+                                        <span class="p-3 m-3 fs-5">21:00</span>
+                                        <span class="p-3 m-3 fs-5">22:00</span>
+                                        <span class="p-3 m-3 fs-5">23:00</span>
+                                    </div>
+
+                                    <div
+                                        class="forecastData d-flex flex-column align-items-center justify-content-between">
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_0 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_0 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_0 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_1 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_1 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_1 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_2 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_2 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_2 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_3 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_3 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_3 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_4 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_4 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_4 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_5 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_5 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_5 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_6 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_6 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_6 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_7 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_7 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_7 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_8 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_8 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_8 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_9 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_9 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_9 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_10 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_10 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_10 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_11 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_11 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_11 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_12 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_12 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_12 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_13 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_13 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_13 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_14 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_14 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_14 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_15 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_15 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_15 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_16 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_16 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_16 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_17 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_17 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_17 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_18 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_18 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_18 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_19 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_19 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_19 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_20 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_20 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_20 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_21 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_21 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_21 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_22 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_22 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_22 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_tomorrowWeatherIcon_23 weatherIcon_table"></div>
+                                                <span class="hourly_tomorrowForecastCondition_23 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_tomorrowForecastTemperature_23 fs-5 pt-3"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="borderBottom">
+                            <div class="NextDay m-auto p-2 mt-4">
+                                <h2 class="fs-3">Overmorrow</h2>
+                                <div class="arrowThird">
+                                    <div class="lineone"></div>
+                                    <div class="linetwo"></div>
+                                </div>
+                            </div>
+
+                            <!-- Forecast Data NextDay -->
+
+                            <div class="NextDayExpandable">
+                                <h3 class="m-2 p-3 fs-2 fw-bolder align">Day</h3>
+                                <div class="dailyForecast">
+                                    <div class="forecastTitles d-flex flex-column align-items-center">
+                                        <span class="p-3 m-3 fs-5">Condition</span>
+                                        <span class="p-3 m-3 fs-5">Temperature</span>
+                                        <span class="p-3 m-3 fs-5">Humidity</span>
+                                        <span class="p-3 m-3 fs-5">Visibility</span>
+                                        <span class="p-3 m-3 fs-5">Wind</span>
+                                        <span class="p-3 m-3 fs-5">Sunrise</span>
+                                        <span class="p-3 m-3 fs-5">Sunrise</span>
+                                    </div>
+
+                                    <div
+                                        class="forecastData d-flex flex-column align-items-center justify-content-evenly">
+                                        <div class="p-2 m-1 me-3 d-flex justify-content-between align-items-center">
+                                            <div class="NextDay_DayForecastIcon weatherIcon_table marg"></div>
+                                            <span class="NextDay_DayForecastCondition fs-5"></span>
+                                        </div>
+                                        <div class="NextDay_DayForecastTemperature p-2 m-2 dayForecastGrid text-center">
+                                            <span class="NextDay_DayForecastTemperature_min hide fs-5"></span>
+                                            <span class="NextDay_DayForecastTemperature_max hide fs-5"></span>
+                                            <span class="NextDay_DayForecastTemperature_avg break fs-5"></span>
+                                        </div>
+                                        <span class="NextDay_DayForecastHumidity p-3 m-3 fs-5"></span>
+
+                                        <span class="NextDay_DayForecastVisibility p-3 m-3 fs-5"></span>
+                                        <span class="NextDay_DayForecastWind p-3 m-3 fs-5"></span>
+                                        <span class="NextDay_DayForecastSunrise p-3 m-3 fs-5"></span>
+                                        <span class="NextDay_DayForecastSunset p-3 m-3 fs-5"></span>
+                                    </div>
+                                </div>
+
+                                <h3 class="m-2 p-3 mt-5 pt-5 fs-2 fw-bolder align">Hourly</h3>
+                                <div class="hourlyForecast">
+                                    <div class="forecastTitles d-flex flex-column align-items-center">
+                                        <span class="p-3 m-3 fs-5">00:00</span>
+                                        <span class="p-3 m-3 fs-5">01:00</span>
+                                        <span class="p-3 m-3 fs-5">02:00</span>
+                                        <span class="p-3 m-3 fs-5">03:00</span>
+                                        <span class="p-3 m-3 fs-5">04:00</span>
+                                        <span class="p-3 m-3 fs-5">05:00</span>
+                                        <span class="p-3 m-3 fs-5">06:00</span>
+                                        <span class="p-3 m-3 fs-5">07:00</span>
+                                        <span class="p-3 m-3 fs-5">08:00</span>
+                                        <span class="p-3 m-3 fs-5">09:00</span>
+                                        <span class="p-3 m-3 fs-5">10:00</span>
+                                        <span class="p-3 m-3 fs-5">11:00</span>
+                                        <span class="p-3 m-3 fs-5">12:00</span>
+                                        <span class="p-3 m-3 fs-5">13:00</span>
+                                        <span class="p-3 m-3 fs-5">14:00</span>
+                                        <span class="p-3 m-3 fs-5">15:00</span>
+                                        <span class="p-3 m-3 fs-5">16:00</span>
+                                        <span class="p-3 m-3 fs-5">17:00</span>
+                                        <span class="p-3 m-3 fs-5">18:00</span>
+                                        <span class="p-3 m-3 fs-5">19:00</span>
+                                        <span class="p-3 m-3 fs-5">20:00</span>
+                                        <span class="p-3 m-3 fs-5">21:00</span>
+                                        <span class="p-3 m-3 fs-5">22:00</span>
+                                        <span class="p-3 m-3 fs-5">23:00</span>
+                                    </div>
+
+                                    <div
+                                        class="forecastData d-flex flex-column align-items-center justify-content-between">
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_0 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_0 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_0 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_1 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_1 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_1 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_2 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_2 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_2 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_3 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_3 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_3 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_4 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_4 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_4 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_5 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_5 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_5 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_6 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_6 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_6 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_7 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_7 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_7 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_8 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_8 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_8 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_9 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_9 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_9 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_10 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_10 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_10 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_11 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_11 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_11 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_12 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_12 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_12 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_13 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_13 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_13 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_14 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_14 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_14 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_15 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_15 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_15 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_16 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_16 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_16 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_17 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_17 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_17 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_18 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_18 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_18 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_19 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_19 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_19 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_20 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_20 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_20 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_21 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_21 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_21 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_22 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_22 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_22 fs-5 pt-3"></span>
+                                        </div>
+
+                                        <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="hourly_NextDayWeatherIcon_23 weatherIcon_table"></div>
+                                                <span class="hourly_NextDayForecastCondition_23 fs-5 w-75"></span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <span class="hourly_NextDayForecastTemperature_23 fs-5 pt-3"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/weather.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+
+
+</body>
+
+</html>
