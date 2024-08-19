@@ -2,27 +2,27 @@
 <html lang="en">
 
 <head>
-<link href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<link rel="stylesheet" href="css/all.css" crossorigin="anonymous">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
-<link rel="shortcut icon" href="images/favicon.svg">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Climate Radar</title>
-<meta name="description" content="Weather Forecast web application.">
-<meta name="keywords" content="Weather Forecast">
-<meta name="author" content="Pradeep Singh Bashera">
-<meta property="og:title" content="Climate Radar">
-<meta property="og:description" content="Weather Forecast web application.">
-<meta property="og:image" content="https://i.imgur.com/1OBq5fM.png">
-<meta property="og:url" content="https://pradeep-bashera.github.io/Climate-Radar/">
-<meta property="og:type" content="website">
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Climate Radar">
-<meta property="twitter:description" content="Weather Forecast web application.">
-<meta property="twitter:image" content="https://i.imgur.com/1OBq5fM.png">
-<meta name="theme-color" content="#fffeee">
+    <link href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/all.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="shortcut icon" href="images/favicon.svg" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Climate Radar</title>
+    <meta name="description" content="Weather Forecast web application." />
+    <meta name="keywords" content="Weather Forecast" />
+    <meta name="author" content="Pradeep Singh Bashera" />
+    <meta property="og:title" content="Climate Radar" />
+    <meta property="og:description" content="Weather Forecast web application." />
+    <meta property="og:image" content="https://i.imgur.com/1OBq5fM.png" />
+    <meta property="og:url" content="https://pradeep-bashera.github.io/Climate-Radar/" />
+    <meta property="og:type" content="website" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Climate Radar" />
+    <meta property="twitter:description" content="Weather Forecast web application." />
+    <meta property="twitter:image" content="https://i.imgur.com/1OBq5fM.png" />
+    <meta name="theme-color" content="#fffeee" />
 </head>
 
 <body>
@@ -42,9 +42,10 @@
                 <form class="form-group">
                     <div class="input-group formDiv m-auto">
                         <input type="text" name="location" id="location" class="form-control" placeholder="Enter city"
-                            autocomplete="off">
-                        <button class="btn btn-primary getWeather text-dark px-3" type="button" id="button-addon2"><i
-                                class="fas fa-search"></i></button>
+                            autocomplete="off" />
+                        <button class="btn btn-primary getWeather text-dark px-3" type="button" id="button-addon2">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
                 </form>
 
@@ -55,11 +56,8 @@
                 </div>
 
                 <div class="Loader mt-5">
-                    <h2 class="fs-3 text-center">
-                        Loading...
-                    </h2>
+                    <h2 class="fs-3 text-center">Loading...</h2>
                 </div>
-
 
                 <div class="eventLayer">
                     <div class="currentWeatherLayer mt-5">
@@ -101,9 +99,7 @@
                     <div class="forecastSection">
                         <h1 class="display-3 text-center main">Forecast</h1>
 
-
                         <div class="WeatherForecast">
-
                             <!-- expand -->
                             <div class="borderBottom">
                                 <div class="today m-auto mt-4 p-2">
@@ -145,7 +141,8 @@
                                         </div>
                                     </div>
 
-                                    <h3 class="m-2 p-3 mt-5 pt-5 fs-2 fw-bolder align">Hourly
+                                    <h3 class="m-2 p-3 mt-5 pt-5 fs-2 fw-bolder align">
+                                        Hourly
                                     </h3>
                                     <div class="hourlyForecast">
                                         <div class="forecastTitles d-flex flex-column align-items-center">
@@ -177,7 +174,6 @@
 
                                         <div
                                             class="forecastData d-flex flex-column align-items-center justify-content-between">
-
                                             <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
                                                     <div class="hourly_todayWeatherIcon_0 weatherIcon_table"></div>
@@ -394,15 +390,10 @@
                                                 <span class="hourly_todayForecastTemperature_23 fs-5 pt-3"></span>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
-
 
                         <div class="borderBottom">
                             <div class="tomorrow m-auto p-2 mt-4">
@@ -412,7 +403,6 @@
                                     <div class="linetwo"></div>
                                 </div>
                             </div>
-
 
                             <!-- Forecast Data Tomorrow -->
                             <div class="tomorrowExpandable">
@@ -480,7 +470,6 @@
 
                                     <div
                                         class="forecastData d-flex flex-column align-items-center justify-content-between">
-
                                         <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <div class="hourly_tomorrowWeatherIcon_0 weatherIcon_table"></div>
@@ -697,14 +686,9 @@
                                             <span class="hourly_tomorrowForecastTemperature_23 fs-5 pt-3"></span>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
-
-
-
 
                         <div class="borderBottom">
                             <div class="NextDay m-auto p-2 mt-4">
@@ -781,7 +765,6 @@
 
                                     <div
                                         class="forecastData d-flex flex-column align-items-center justify-content-between">
-
                                         <div class="hourly_DayForecast p-2 m-2 hourlyForecastGrid text-center">
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <div class="hourly_NextDayWeatherIcon_0 weatherIcon_table"></div>
@@ -998,7 +981,6 @@
                                             <span class="hourly_NextDayForecastTemperature_23 fs-5 pt-3"></span>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -1012,8 +994,6 @@
     <script src="js/ui.js"></script>
     <script src="js/app.js"></script>
     <script src="js/main.js"></script>
-
-
 </body>
 
 </html>
